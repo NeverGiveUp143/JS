@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>
+      Hello World!
+    </title>
+    <style>
+      body{ padding: 25px; } .title { color: #5C6AC4; } table, th, td { border:1px
+      solid black; } table { margin-bottom: 15px; } u{ color: blue; }
+    </style>
+  </head>
+  
+  <body>
+    <h1 class="title">
+      Hello World!
+    </h1>
+    <p id="currentTime">
+    </p>
+    <h2>
+      A basic HTML table
+    </h2>
+    <table style="width:100%">
+      <tr>
+        <th>
+          Company
+        </th>
+        <th>
+          Contact
+        </th>
+        <th>
+          Country
+        </th>
+        <th>
+          Email
+        </th>
+      </tr>
+      <tr>
+        <td>
+          Alfreds Futterkiste
+        </td>
+        <td>
+          Maria Anders
+        </td>
+        <td>
+          Germany
+        </td>
+        <td>
+          <u onclick="myFunc(event, this)">
+            Maria.Anders@AlfredsFutterkiste.co.in
+          </u>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Centro comercial Moctezuma
+        </td>
+        <td>
+          Francisco Chang
+        </td>
+        <td>
+          Mexico
+        </td>
+        <td>
+          <u onclick="myFunc(event, this)">
+            Francisco.Chang@CentrocomercialMoctezuma.co.in
+          </u>
+        </td>
+      </tr>
+    </table>
+    <script>
+      const p = document.getElementById('currentTime')
+
+      p.innerText = new Date()
+
+      const currentTimeBtn = document.createElement('Button')
+
+      currentTimeBtn.innerText = 'Current Time'
+
+      const parentElement = document.getElementsByTagName('body')
+
+      parentElement[0].insertBefore(currentTimeBtn, parentElement[0].lastChild)
+
+      parentElement[0].addEventListener('click',
+      function() {
+        p.innerText = new Date()
+      })
+
+      const trElements = document.getElementsByTagName('tr')
+
+      Array.from(trElements).forEach(function(tr) {
+        tr.addEventListener('click',
+        function() {
+          console.log("Event Bubbling")
+        })
+      })
+
+      const tdElements = document.getElementsByTagName('td')
+
+      Array.from(tdElements).forEach(function(td) {
+        td.addEventListener('click',
+        function() {
+          console.log(this.innerText)
+        })
+      })
+
+      function myFunc(event, currentContext) {
+        console.log(currentContext.innerText) event.stopPropagation() new Promise(function(resolve, reject) {
+          setTimeout(function() {
+            resolve("Event Bubbling is stopped");
+          },
+          2 * 1000);
+        }).then((result) = >{
+          console.log(result)
+        })
+      }
+    </script>
+  </body>
+
+</html>
